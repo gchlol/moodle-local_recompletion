@@ -43,7 +43,7 @@ if (empty($userid)) {
 $context = context_course::instance($course->id);
 if ($USER->id <> $userid) {
     $cancelurl = new moodle_url('/local/recompletion/participants.php', array('id' => $course->id));
-    require_capability('local/recompletion:manage', $context);
+    require_capability('local/recompletion:resetothercompletion', $context);
     $user = $DB->get_record('user', array('id' => $userid));
 } else {
     $cancelurl = course_get_url($course);

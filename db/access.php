@@ -46,6 +46,15 @@ $capabilities = [
             'manager' => CAP_ALLOW,
         ]
     ],
+    'local/recompletion:resetothercompletion' => [
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => [
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW,
+        ],
+    ],
     'local/recompletion:bulkoperations' => [
         'riskbitmask' => RISK_XSS,
         'captype' => 'write',

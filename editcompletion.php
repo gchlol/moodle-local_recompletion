@@ -33,7 +33,7 @@ $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 require_login($course);
 
 $context = context_course::instance($course->id);
-require_capability('local/recompletion:manage', $context);
+require_capability('local/recompletion:resetothercompletion', $context);
 
 $PAGE->set_url('/local/recompletion/editcompletion.php', array('id' => $course->id));
 if (empty($users) && empty($userid)) {

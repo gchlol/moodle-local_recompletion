@@ -45,6 +45,7 @@ $string['recompletionsettingssaved'] = 'Recompletion settings saved';
 $string['recompletion:manage'] = 'Allow course recompletion settings to be changed';
 $string['recompletion:bulkoperations'] = 'Bulk operations';
 $string['recompletion:resetmycompletion'] = 'Reset my own completion';
+$string['recompletion:resetothercompletion'] = 'Reset other users\' completion';
 $string['resetmycompletion'] = 'Reset my activity completion';
 $string['recompletiontask'] = 'Check for users that need to recomplete';
 $string['completionnotenabled'] = 'Completion is not enabled in this course';
