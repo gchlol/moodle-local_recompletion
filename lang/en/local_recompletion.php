@@ -38,7 +38,9 @@ $string['recompletiontype_help'] = 'Determines how user completion results will 
 * Schedule - allows recompletion on a specified date eg 1st Jan every year.';
 $string['recompletionschedule'] = 'Recompletion schedule';
 $string['recompletionschedule_help'] = 'Set a date (e.g. Jan 1st) when completion results are reset. This date is calculated forwards from when a recompletion is last run. This reset would then occur at an interval. \'Jan 1\' will result in a yearly recompletion, \'friday\' will result in recompletion being run every Friday.';
-$string['recompletioncalculateddate'] = 'Calculated date: {$a}';
+$string['recompletionschedulestart'] = 'Recompletion schedule start time';
+$string['recompletionschedulestart_help'] = 'This is to be used in combination with a schedule that is a time period instead of a set day (e.g. \'3 months\'). If selected, the first recompletion will happen on this day and will then use the recompletion schedule. This date must be a current or future date.';
+$string['recompletioncalculateddate'] = 'Next recompletion date: {$a}';
 $string['recompletionrange'] = 'Recompletion period';
 $string['recompletionrange_help'] = 'Set the period of time before a users completion results are reset.';
 $string['recompletionsettingssaved'] = 'Recompletion settings saved';
@@ -50,8 +52,16 @@ $string['resetmycompletion'] = 'Reset my activity completion';
 $string['recompletiontask'] = 'Check for users that need to recomplete';
 $string['completionnotenabled'] = 'Completion is not enabled in this course';
 $string['recompletionnotenabledincourse'] = 'Recompletion is not enabled in courseid: {$a}';
-$string['recompletionemailenable'] = 'Send recompletion message';
-$string['recompletionemailenable_help'] = 'Enable email messaging to notifiy users that recompletion is required';
+
+$string['recompletionnotify:completed'] = 'Send to completed users';
+$string['recompletionnotify:enrolled'] = 'Send to completed users with an enrollment';
+$string['recompletionnotify:activeenrolled'] = 'Send to completed users with an active enrollment';
+$string['recompletionnotify'] = 'Recompletion message';
+$string['recompletionnotify_help'] = 'Determines which users are notified of recompletion.
+* Send to completed users - If a course completion record exists for a user, they will be notified.
+* Send to completed users with an active enrollment - If a user has an active enrollment they will be notified.
+* Send to completed users with an enrollment - If a user has an active or suspended enrollment they will be notified.';
+
 $string['recompletionemailsubject'] = 'Recompletion message subject';
 $string['recompletionemailsubject_help'] = 'A custom recompletion email subject may be added as plain text
 
@@ -136,13 +146,14 @@ $string['privacy:metadata:quiz_grades:grade'] = 'The overall grade for this quiz
 $string['privacy:metadata:quiz_grades:quiz'] = 'The quiz that was graded.';
 $string['privacy:metadata:quiz_grades:timemodified'] = 'The time that the grade was modified.';
 $string['privacy:metadata:quiz_grades:userid'] = 'The user who was graded.';
-$string['privacy:metadata:scoes_track:element'] = 'The name of the element to be tracked';
-$string['privacy:metadata:scoes_track:value'] = 'The value of the given element';
+$string['privacy:metadata:scoes_value:element'] = 'The ID of the element to be tracked';
+$string['privacy:metadata:scoes_value:value'] = 'The value of the given element';
 $string['privacy:metadata:coursemoduleid'] = 'The activity ID';
 $string['privacy:metadata:completionstate'] = 'If the activity has been completed';
 $string['privacy:metadata:viewed'] = 'If the activity was viewed';
 $string['privacy:metadata:attempt'] = 'The attempt number';
-$string['privacy:metadata:scorm_scoes_track'] = 'Archive of the tracked data of the SCOes belonging to the activity';
+$string['privacy:metadata:scorm_attempt'] = 'Archive of previous SCORM attempts.';
+$string['privacy:metadata:scorm_scoes_value'] = 'Archive of the tracked data of the SCOes belonging to the activity';
 $string['privacy:metadata:local_recompletion_qr:questionnaireid'] = 'Questionnaire id';
 $string['privacy:metadata:local_recompletion_qr:submitted'] = 'Submitted';
 $string['privacy:metadata:local_recompletion_qr:complete'] = 'complete';
@@ -160,7 +171,6 @@ $string['privacy:metadata:attempt'] = 'The attempt number';
 $string['privacy:metadata:rawscore'] = 'The score obtained';
 $string['privacy:metadata:timecreated'] = 'The time when the tracked element was created';
 $string['privacy:metadata:timemodified'] = 'The last time element was tracked';
-$string['privacy:metadata:userid'] = 'The ID of the user who accessed the H5P activity';
 $string['privacy:metadata:local_recompletion_la'] = 'Archive for lesson_attempts';
 $string['privacy:metadata:correct'] = 'Correct answer?';
 $string['privacy:metadata:useranswer'] = 'Answer';
@@ -177,6 +187,7 @@ $string['privacy:metadata:deadline'] = 'Deadline';
 $string['privacy:metadata:maxattempts'] = 'Max number of attempts';
 $string['privacy:metadata:retake'] = 'Retake';
 $string['privacy:metadata:score'] = 'Score';
+$string['privacy:metadata:scormid'] = 'Scorm id';
 $string['privacy:metadata:local_recompletion_cert'] = 'Archive of previous certificate issues.';
 $string['privacy:metadata:local_recompletion_cert:timecreated'] = 'The time that the certificate issue created';
 $string['noassigngradepermission'] = 'Your completion was reset, but this course contains an assignment that could not be reset, please ask your teacher to do this for you if required.';
@@ -245,6 +256,7 @@ $string['entity:local_recompletion_h5p'] = 'Archive of H5P attempts (mod_h5pacti
 $string['datasource:local_recompletion_h5p'] = 'Archive of H5P attempts (mod_h5pactivity)';
 $string['yearly'] = 'Yearly';
 $string['invalidscheduledate'] = 'Invalid schedule date entered.';
+$string['invalidschedulestartdate'] = 'Invalid schedule start date entered, this must be a future or current date.';
 $string['lessonattempts'] = 'Lesson attempts';
 $string['lessonattempts_help'] = 'How to handle Lesson attempts within the course. If archive is selected, the attempts will be archived.';
 $string['archivelesson'] = 'Archive old Lesson attempts';

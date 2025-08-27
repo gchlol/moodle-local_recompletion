@@ -198,10 +198,6 @@ class check_recompletion extends \core\task\scheduled_task {
     protected function notify_user($userid, $course, $config) {
         global $DB, $CFG;
 
-        if (!$config->recompletionemailenable) {
-            return;
-        }
-
         $userrecord = $DB->get_record('user', ['id' => $userid]);
         $context = \context_course::instance($course->id);
         $from = get_admin();
@@ -214,7 +210,7 @@ class check_recompletion extends \core\task\scheduled_task {
             $key = ['{$a->coursename}', '{$a->profileurl}', '{$a->link}', '{$a->fullname}', '{$a->email}'];
             $value = [$a->coursename, $a->profileurl, $a->link, fullname($userrecord), $userrecord->email];
             $message = str_replace($key, $value, $message);
-            // Message body now stored as html - some might be non-html though, so we have to handle both - not clean but it works for now.
+            // Message body stored as html - some might be non-html so we have to handle both, not clean but it works for now.
             $keyhtml = [
                 '{$a-&gt;coursename}',
                 '{$a-&gt;profileurl}',
@@ -296,11 +292,25 @@ class check_recompletion extends \core\task\scheduled_task {
             }
         }
 
-        // Now notify user.
-        $this->notify_user($userid, $course, $config);
+        $context = \context_course::instance($course->id);
+
+        // Determine if user should be notified.
+        if (!empty($config->recompletionnotify)) {
+            // If user has a completion record, notify user.
+            if ($config->recompletionnotify == 'completed') {
+                $this->notify_user($userid, $course, $config);
+            } else if ($config->recompletionnotify == 'enrolled') { // Active or suspended enrollment, notify user.
+                if (is_enrolled($context, $userid)) {
+                    $this->notify_user($userid, $course, $config);
+                }
+            } else if ($config->recompletionnotify == 'activeenrolled') { // Active enrollment only, notify user.
+                if (is_enrolled($context, $userid, '', true)) {
+                    $this->notify_user($userid, $course, $config);
+                }
+            }
+        }
 
         // Trigger completion reset event for this user.
-        $context = \context_course::instance($course->id);
         $event = \local_recompletion\event\completion_reset::create(
             [
                 'objectid'      => $course->id,
